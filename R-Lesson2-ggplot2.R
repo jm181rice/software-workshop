@@ -4,6 +4,9 @@
 
 library(ggplot2)
 ?ggplot2
+setwd("~/Desktop/r-novice-gapminder")
+
+gapminder <- read.csv("data/gapminder_data.csv", header = TRUE, stringsAsFactors = TRUE)
 
 ggplot(data = gapminder) ### omg it's nothing!
 
@@ -66,14 +69,17 @@ ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp,
   geom_line(mapping = aes(color=continent))
 
 #### Transformations & Stats ####
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, 
+                                       y = lifeExp)) +
   geom_point()
 
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, 
+                                       y = lifeExp)) +
   geom_point(alpha = 0.5) + 
   scale_x_log10()
 
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, 
+                                       y = lifeExp)) +
   geom_point(alpha = 0.5) + 
   scale_x_log10() + 
   geom_smooth(method="lm")
@@ -136,15 +142,40 @@ lifeExp_plot <- ggplot(data = americas, mapping = aes(x = year, y = lifeExp, col
   ) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+ggsave(filename = "graphs/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
 
 #### Challenge 5 #####
 
-#'Generate boxplots to compare life expectancy between the different continents during the available years.
+#'Generate boxplots to compare life expectancy between the different continents 
+#'during the available years.
 #'
 #'Advanced:
 #'  
 #'Rename y axis as Life Expectancy.
 #'Remove x axis labels.
 
+ggplot(data = gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+
+library(dplyr)
+
+
+gapminder %>% 
+  group_by(continent) %>%
+  summarize(mean_LE_cont = mean(lifeExp))
+
+ggplot(data = gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot(aes(fill = continent), alpha = 0.5) +
+  labs(x = "", y = "Human Life Expectancy (years)") +
+  theme_bw()
+
+
+?ggplot2::labs
+
+ggplot(data = gapminder, aes(x = year, y = lifeExp,
+                             group = country)) +
+  geom_line(aes(color = continent),alpha = 0.5) +
+  labs(x = "", y = "Human Life Expectancy (years)") +
+  theme_bw() +
+  ylim(c(0,85))
 
