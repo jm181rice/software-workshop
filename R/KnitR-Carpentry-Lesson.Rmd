@@ -2,9 +2,11 @@
 title: "KnitR-Carpentry-Lesson"
 author: "Julieanne Montaquila"
 date: "`r Sys.Date()`"
-output: pdf_document
-editor_options: 
-  markdown: 
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  markdown:
     wrap: 72
 ---
 
@@ -57,8 +59,13 @@ and an itemized list).
 
 Convert the document to a webpage. (html)
 
-[Carpentries Home Page](https://carpentries.org/) ![The Carpentries
-Logo](https://carpentries.org/assets/img/TheCarpentries.svg)
+[Carpentries Home Page](https://carpentries.org/) 
+
+![The Carpentries
+Logo](swc_blue.svg)
+
+
+## Notation 
 
 Subscripts: F~2~
 
