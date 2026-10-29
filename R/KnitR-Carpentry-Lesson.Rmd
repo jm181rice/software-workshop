@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output:
   html_document:
     df_print: paged
-  pdf_document: default
 editor_options:
   markdown:
     wrap: 72
@@ -13,6 +12,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/Desktop/software-workshop/")
 ```
 
 ## R Markdown
@@ -29,6 +29,20 @@ chunks within the document. You can embed an R code chunk like this:
 summary(cars)
 ```
 
+*italics* **bold**
+
+Be consistent!
+
+Section Headers with different sizes:
+
+# Title
+
+## Main Section
+
+### Sub-section
+
+#### Sub-sub-section
+
 ## Including Plots
 
 You can also embed plots, for example:
@@ -40,21 +54,19 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
 
-Challenge 1: Create a new R Markdown document. Delete all of the R code
+Challenge 1 Create a new R Markdown document. Delete all of the R code
 chunks and write a bit of Markdown (some sections, some italicized text,
 and an itemized list).
 
 Convert the document to a webpage. (html)
 
-## Adding links:
+[Carpentries Home Page](https://carpentries.org/) 
 
-[Carpentries Home Page](https://carpentries.org/)
-
-
-![](swc_blue.svg)
+![The Carpentries
+Logo](swc_blue.svg)
 
 
-## Notation and equations
+## Notation 
 
 Subscripts: F~2~
 
@@ -62,17 +74,66 @@ Superscripts: F^2^
 
 ### Write Equations with LaTeX
 
+"\$ \$ and
+$$                                                                                                                                                                                                                                                                $$"
+to add math equations.
+
+$$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$ Soooo beautiful omg
+\<3
+
 You can review Markdown syntax by navigating to the “Markdown Quick
 Reference” under the “Help” field in the toolbar at the top of RStudio.
 
-## Chunks
-
 Chunks are for code.
 
-**Challenge 2:** Add a code chunk that:
+**Challenge 2:** Add a code chunk that
 
 1.  Loads the ggplot2 package
 
 2.  Reads the gapminder data, and,
 
 3.  Creates a plot
+
+```{r}
+library(ggplot2)
+gapminder <- read.csv("data/gapminder_data.csv")
+
+lifeExp_plot <- ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp)) +
+  geom_boxplot(aes(fill = continent)) +
+  xlab("") +
+  theme_bw()
+
+lifeExp_plot
+```
+
+
+## Chunk Options
+
+There are a variety of options to affect how the code chunks are treated. Here are some examples:
+
+Use echo=FALSE to avoid having the code itself shown.
+Use results="hide" to avoid having any results printed.
+Use eval=FALSE to have the code shown but not evaluated.
+Use warning=FALSE and message=FALSE to hide any warnings or messages produced.
+Use fig.height and fig.width to control the size of the figures produced (in inches).
+So you might write:
+
+```{r load_libraries, echo=FALSE, message=FALSE}
+library("dplyr")
+library("ggplot2")
+```
+
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.path="Figs/", message=FALSE, warning=FALSE,
+                      echo=FALSE, results="hide", fig.width=11)
+```
+
+# Challenge 3
+Use chunk options to control the size of a figure and to hide the code.
+
+```{r echo = FALSE, fig.width = 3}
+plot(faithful)
+```
+
+### Tip: Creating PDF documents
+Creating .pdf documents may require installation of some extra software. The R package tinytex provides some tools to help make this process easier for R users. With tinytex installed, run tinytex::install_tinytex() to install the required software (you’ll only need to do this once) and then when you knit to pdf tinytex will automatically detect and install any additional LaTeX packages that are needed to produce the pdf document. Visit the tinytex website for more information.
