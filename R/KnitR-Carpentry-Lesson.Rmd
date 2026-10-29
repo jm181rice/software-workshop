@@ -3,9 +3,9 @@ title: "KnitR-Carpentry-Lesson"
 author: "Julieanne Montaquila"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 editor_options:
   markdown:
     wrap: 72
@@ -29,7 +29,6 @@ chunks within the document. You can embed an R code chunk like this:
 summary(cars)
 ```
 
-
 ## Including Plots
 
 You can also embed plots, for example:
@@ -41,30 +40,34 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
 
-Challenge 1:
-Create a new R Markdown document. Delete all of the R code
-chunks and write a bit of Markdown (some sections, some italicized text, and an itemized list).
+Challenge 1: Create a new R Markdown document. Delete all of the R code
+chunks and write a bit of Markdown (some sections, some italicized text,
+and an itemized list).
 
 Convert the document to a webpage. (html)
 
 ## Adding links:
 
-[Carpentries Home Page](https://carpentries.org/) ![The Carpentries
-Logo](https://carpentries.org/assets/img/TheCarpentries.svg)
+[Carpentries Home Page](https://carpentries.org/)
+
+
+![](swc_blue.svg)
+
 
 ## Notation and equations
+
 Subscripts: F~2~
 
 Superscripts: F^2^
 
 ### Write Equations with LaTeX
 
-
-You can review Markdown syntax by navigating to the “Markdown Quick Reference” under the “Help” field in the toolbar at the top of RStudio.
+You can review Markdown syntax by navigating to the “Markdown Quick
+Reference” under the “Help” field in the toolbar at the top of RStudio.
 
 ## Chunks
 
-Chunks are for code. 
+Chunks are for code.
 
 **Challenge 2:** Add a code chunk that:
 
