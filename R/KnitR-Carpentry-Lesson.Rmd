@@ -2,9 +2,12 @@
 title: "KnitR-Carpentry-Lesson"
 author: "Julieanne Montaquila"
 date: "`r Sys.Date()`"
-output: pdf_document
-editor_options: 
-  markdown: 
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+editor_options:
+  markdown:
     wrap: 72
 ---
 
